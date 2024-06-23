@@ -17,7 +17,8 @@ class TestFeedPage:
         assert 'бургер' in feed_page.get_text_on_title_of_modal_order()
 
     @allure.title('Проверка отображения существующего заказа из истории пользователя в ленте')
-    def test_displaying_in_feed_new_order_from_history_success(self, driver, create_user_and_order_and_delete, set_user_tokens):
+    def test_displaying_in_feed_new_order_from_history_success(self, driver, create_user_and_order_and_delete,
+                                                               set_user_tokens):
         main_page = MainPage(driver)
         account_page = AccountPage(driver)
         order_history_page = OrderHistoryPage(driver)
@@ -65,7 +66,7 @@ class TestFeedPage:
         main_page.click_on_button_login_in_main()
         main_page.drag_and_drop_ingredient_to_order()
         main_page.click_on_button_make_order()
-        new_order_number = main_page.get_number_of_order_in_modal_confirmation()
+        new_order_id = main_page.get_number_of_order_in_modal_confirmation()
         main_page.click_on_button_close_confirmation_modal()
         main_page.click_header_feed_button()
-        assert feed_page.check_displaying_order_number_in_feed_progress_section(new_order_number)
+        assert feed_page.get_order_number_in_feed_progress_section() == '0'+new_order_id

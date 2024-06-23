@@ -73,6 +73,7 @@ class MainPage(BasePage):
 
     @allure.step('Получить номер в окне о создании заказа')
     def get_number_of_order_in_modal_confirmation(self):
+        self.wait_for_element_to_change_text(MainPageLocators.number_of_order_in_modal_confirmation, '9999')
         return self.get_text_on_element(MainPageLocators.number_of_order_in_modal_confirmation)
 
     @allure.step('Кликнуть на кнопку закрытия окна о создании заказа')

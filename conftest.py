@@ -17,10 +17,6 @@ def driver(request):
         options.add_argument('--window-size=1920,1080')
         options.add_argument('--incognito')
         driver = webdriver.Chrome(options=options)
-        driver.get(Urls.base_url)
-
-        yield driver
-        driver.quit()
     elif driver_class == webdriver.Firefox:
         firefox_options = webdriver.FirefoxOptions()
         firefox_options.add_argument('--width=1920')
@@ -29,10 +25,9 @@ def driver(request):
         profile.set_preference("browser.privatebrowsing.autostart", True)
         firefox_options.profile = profile
         driver = webdriver.Firefox(options=firefox_options)
-        driver.get(Urls.base_url)
-
-        yield driver
-        driver.quit()
+    driver.get(Urls.base_url)
+    yield driver
+    driver.quit()
 
 
 @pytest.fixture

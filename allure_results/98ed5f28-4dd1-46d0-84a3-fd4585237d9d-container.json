@@ -1,1 +1,0 @@
-{"uuid": "cc7ccec4-5a5c-4b4a-aa52-20e25d2e5e3d", "children": ["9dd38c42-ef0b-4de8-acb2-eeefad1cf080"], "befores": [{"name": "Фикстура передает в драйвер токены созданного пользователя", "status": "passed", "start": 1718699972845, "stop": 1718699972972}], "start": 1718699972845, "stop": 1718700017719}

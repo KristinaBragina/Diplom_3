@@ -1,6 +1,5 @@
 from page_objects.base_page import BasePage
 from locators.feed_page_locators import FeedPageLocators
-from locators.order_history_page_locators import OrderHistoryPageLocators
 import allure
 
 
@@ -28,17 +27,13 @@ class FeedPage(BasePage):
         self.find_element_with_wait(FeedPageLocators.daily_quantity_of_orders)
         return self.get_text_on_element(FeedPageLocators.daily_quantity_of_orders)
 
-    @allure.step('Проверить наличие номера созданного заказа в списке ленты')
+    @allure.step('Проверить наличие номера заказа в списке ленты')
     def check_id_order_in_feed(self, order_id):
-        locator = OrderHistoryPageLocators.order_card_id
-        xpath_with_order_number = f'{locator[1]}[contains(text(), "{order_id}")]'
-        locator_with_order_number = (locator[0], xpath_with_order_number)
-        return self.find_element_with_wait(locator_with_order_number)
+        locator = FeedPageLocators.id_order_card_in_feed_with_substitutions
+        locator_with_order_id = (locator[0], locator[1].format(order_id=order_id))
+        self.find_element_with_wait(locator_with_order_id)
+        return self.check_displaying_of_element(locator_with_order_id)
 
-    @allure.step('Проверить появление номера нового заказа в разделе "В работе"')
-    def check_displaying_order_number_in_feed_progress_section(self, order_number):
-        locator = FeedPageLocators.number_of_order_in_progress
-        xpath_with_order_number = f'{locator[1]}[contains(normalize-space(), "{order_number}")]'
-        locator_with_order_number = (locator[0], xpath_with_order_number)
-        self.wait_visibility_of_element(locator_with_order_number)
-        return self.find_element_with_wait(locator_with_order_number)
+    @allure.step('Получить номер последнего заказа в разделе "В работе"')
+    def get_order_number_in_feed_progress_section(self):
+        return self.get_text_on_element(FeedPageLocators.number_of_order_in_progress)

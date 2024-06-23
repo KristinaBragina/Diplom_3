@@ -8,7 +8,7 @@ class FeedPageLocators:
     # Заголовок ленты заказов
     title_of_orders_feed = (By.XPATH, '//div[contains(@class, "OrderFeed_orderFeed")]/h1')
 
-    # Заказ в ленте
+    # Карточка заказа в ленте
     order_in_feed = (By.XPATH, '//li[contains(@class, "OrderHistory_listItem")][1]')
 
     # Всплывающее окно с деталями заказа
@@ -32,3 +32,6 @@ class FeedPageLocators:
     number_of_order_in_progress = (By.XPATH, '//ul[contains(@class, '
                                              '"OrderFeed_orderListReady")]/li[contains(@class, '
                                              '"text_type_digits-default")]')
+
+    # Номер заказа в ленте — заготовка, в которую нужно подставить id искомого заказа
+    id_order_card_in_feed_with_substitutions = (By.XPATH, './/*[text()="{order_id}"]')

@@ -1,15 +1,12 @@
 from page_objects.base_page import BasePage
 from locators.password_recovery_locators import PasswordRecoveryLocators
-from locators.main_page_locators import MainPageLocators
 from helpers import *
 import allure
 
 
 class PasswdRecoveryPage(BasePage):
-    @allure.step('Открыть на страницу восстановления пароля')
+    @allure.step('Открыть страницу восстановления пароля')
     def navigate_to_recovery_passwd_page(self):
-        self.wait_visibility_of_element(MainPageLocators.button_login_in_main)
-        self.click_on_element(MainPageLocators.button_login_in_main)
         self.wait_visibility_of_element(PasswordRecoveryLocators.button_forgot_password)
         self.click_on_element(PasswordRecoveryLocators.button_forgot_password)
 
